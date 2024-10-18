@@ -1,0 +1,38 @@
+{
+    "home": "Home",
+    "favourite":"Favourite",
+    "myRequests":"My Requests",
+    "offers":"Offers",
+    "normalUser":"Normal user",
+    "merchant":"Merchant",
+    "EnterYourFirstName":"Enter your first name",
+    "EnterYourLastName":"Enter your last name",
+    "EnterYourPhoneNumber":"Enter your phone number",
+    "EnterYourEmail":"Enter your email",
+    "firstName":"First Name",
+    "lastName":"last Name",
+    "phone":"Phone number",
+    "email":"Email",
+    "password":"Enter your password",
+    "login":"Log in",
+    "signUp":"sign Up",
+    "DontHaveAnAccount":"Don't have an account?",
+    "WelcomeBack":"Welcome Back !",
+    "contactUs":"Contact Us",
+    "signOut":"Log Out",
+    "editProfile":"Edit Profile",
+    "MyProfile":"My Profile",
+    "aboutUs":"About Us",
+    "userType":"User Type",
+    "upDate":"Update",
+    "policy":"Policy",
+    "delete":"Delete ",
+    "deleteYourAccount":"Delete Account",
+    "addProduct":"Add Product",
+    "Submit":"Submit",
+    "ProductDetails":"Product Details",
+    "price":"price"
+
+
+
+}

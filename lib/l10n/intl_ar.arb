@@ -1,0 +1,37 @@
+{
+    "home": "الصفحة الرئيسية",
+    "favourite":"المفضلة",
+    "myRequests":"طلباتي",
+    "offers":"العروض",
+    "normalUser":"مستخدم عادي",
+    "merchant":"تاجر",
+    "EnterYourFirstName":"أدخل اسمك الأول",
+    "EnterYourLastName":"أدخل اسمك الأخير",
+    "EnterYourPhoneNumber":"أدخل رقم هاتفك",
+    "EnterYourEmail":"أدخل بريدك الإلكتروني",
+    "firstName":"الاسم الأول",
+    "lastName":"الاسم الأخير",
+    "phone":"رقم الهاتف",
+    "email":"البريد الإلكتروني",
+    "password":"أدخل كلمة المرور",
+    "login":"تسجيل الدخول",
+    "signUp":"إنشاء حساب",
+    "DontHaveAnAccount":"ليس لديك حساب؟",
+    "WelcomeBack":"مرحباً بعودتك!",
+    "contactUs":"اتصل بنا",
+    "signOut":"تسجيل الخروج",
+    "editProfile":"تعديل الملف الشخصي",
+    "MyProfile":"ملفي الشخصي",
+    "aboutUs":"من نحن",
+    "userType":"نوع المستخدم",
+    "upDate":"تحديث",
+    "policy":"سياستنا",
+    "deleteYourAccount":"حذف حسابك",
+    "addProduct":"أضافة منتج",
+    "ProductDetails":"تفاصيل المنتج",
+    "price":"السعر"
+
+
+
+
+}

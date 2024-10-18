@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "991822942204",
+    "project_id": "interview-17710",
+    "storage_bucket": "interview-17710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991822942204:android:98ef254200bf7fa07d6c79",
+        "android_client_info": {
+          "package_name": "com.example.yousef_nour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJqLi8bcjvE2awNGTIVNiLlyP5fEqGyF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
