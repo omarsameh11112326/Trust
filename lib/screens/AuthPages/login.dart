@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yousef_nour/components/CustomTextFormField.dart';
 import 'package:yousef_nour/components/button.dart';
@@ -30,92 +29,98 @@ class _LogInState extends State<LogIn> {
       backgroundColor: Colors.white,
       body: Form(
         key: formKey,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Center(
-                  child: Lottie.network(
-                    "https://lottie.host/ffdc7d1a-ac1f-4f8d-b914-5e701a56f301/6vFYNx8XMV.json",
-                    height: MediaQuery.of(context).size.height * 0.6,
-                  ),
-                ),
-                CustomTextFormField(
-                  icon: const Icon(Icons.email),
-                  label: S.of(context).EnterYourEmail,
-                  textInputType: TextInputType.emailAddress,
-                  inputString: (data) {},
-                  controller: emailController,
-                ),
-                const SizedBox(height: 10),
-                CustomTextFormField(
-                  icon: const Icon(Icons.remove_red_eye),
-                  label: S.of(context).password,
-                  textInputType: TextInputType.visiblePassword,
-                  inputString: (data) {},
-                  isPassword: true,
-                  controller: passwordController,
-                ),
-                const SizedBox(height: 5),
-                isLoading
-                    ? const CircularProgressIndicator() // Show loading indicator while signing in
-                    : CustomButton(
-                        ButtonText: S.of(context).login,
-                        OnPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            setState(() {
-                              isLoading = true; // Show loading state
-                            });
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+                        const Spacer(flex: 2,),
 
-                            bool signInSuccess = await signInFun(
-                              emailController.text,
-                              passwordController.text,
+               Center(
+        
+          child: Image.asset('assets/TRUST LOGO PNBG.png'),
+          
+          
+           ), 
+                   const Spacer(
+                    flex: 1,
+                   ),
+              CustomTextFormField(
+                icon: const Icon(Icons.email),
+                label: S.of(context).EnterYourEmail,
+                textInputType: TextInputType.emailAddress,
+                inputString: (data) {},
+                controller: emailController,
+              ),
+              const SizedBox(height: 10),
+              CustomTextFormField(
+                icon: const Icon(Icons.remove_red_eye),
+                label: S.of(context).password,
+                textInputType: TextInputType.visiblePassword,
+                inputString: (data) {},
+                isPassword: true,
+                controller: passwordController,
+              ),
+              const SizedBox(height: 5),
+              isLoading
+                  ? const CircularProgressIndicator() 
+                  : CustomButton(
+                      ButtonText: S.of(context).login,
+                      OnPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          setState(() {
+                            isLoading = true; 
+                          });
+        
+                          bool signInSuccess = await signInFun(
+                            emailController.text,
+                            passwordController.text,
+                          );
+        
+                          setState(() {
+                            isLoading = false; // Hide loading state
+                          });
+        
+                          if (signInSuccess) {
+                            passwordController.clear();
+                            emailController.clear();
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Login failed. Please check your credentials.'),
+                              ),
                             );
-
-                            setState(() {
-                              isLoading = false; // Hide loading state
-                            });
-
-                            if (signInSuccess) {
-                              passwordController.clear();
-                              emailController.clear();
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                      'Login failed. Please check your credentials.'),
-                                ),
-                              );
-                            }
                           }
-                        },
-                      ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      S.of(context).DontHaveAnAccount,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignUp(),
-                          ),
-                        );
+                        }
                       },
-                      child: Text(
-                        S.of(context).signUp,
-                        style: const TextStyle(fontSize: 12, color: Colors.teal),
-                      ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    S.of(context).DontHaveAnAccount,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SignUp(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      S.of(context).signUp,
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF2F019E)),
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(
+                      flex: 2,
+                     ),
+            ],
           ),
         ),
       ),
@@ -135,7 +140,7 @@ class _LogInState extends State<LogIn> {
       bool isAdmin = emailAddress == "admin@admin.com" && password == "admin1";
       await prefs.setBool('isAdmin', isAdmin);
 
-      if (!mounted) return false; // Check if the widget is still mounted
+      if (!mounted) return false; 
 
       if (isAdmin) {
         Navigator.of(context).pushReplacement(

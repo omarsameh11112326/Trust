@@ -10,25 +10,34 @@ String ButtonText;
 Function()  OnPressed;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-            onPressed: OnPressed,
-            style: ElevatedButton.styleFrom(
-
-              backgroundColor:  const Color.fromARGB(255, 255, 255, 255),
-              elevation: 0,
-              side: const BorderSide(style: BorderStyle.solid,
-              color: Colors.teal
+    return SizedBox(
+      height: 50,
+      width:  MediaQuery.of(context).size.width*0.86,
+      child: ElevatedButton(
+              onPressed: OnPressed,
               
-              )
-            ), 
-            child:  Text(ButtonText,
-            style: const TextStyle(
-              color: Colors.teal,
-              fontSize: 26
+              style: ElevatedButton.styleFrom(
+                
+      
+                backgroundColor:  const Color(0xFF2F019E),
+                elevation: 0,
+                side: const BorderSide(
+                  style: BorderStyle.solid,
+                color: Color.fromARGB(255, 255, 255, 255)
+                ),
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12), 
+  ),
+              ), 
+              child:  Text(ButtonText,
+              style: const TextStyle(
+                color:  Color.fromARGB(255, 255, 255, 255),
+                fontSize: 26
+              ),
+              ),
+         
+            
             ),
-            ),
-       
-          
-          );
+    );
   }
 }

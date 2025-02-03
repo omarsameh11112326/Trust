@@ -210,10 +210,10 @@ class S {
     );
   }
 
-  /// `sign Up`
+  /// `Sign up`
   String get signUp {
     return Intl.message(
-      'sign Up',
+      'Sign up',
       name: 'signUp',
       desc: '',
       args: [],
@@ -375,6 +375,86 @@ class S {
     return Intl.message(
       'price',
       name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paper Products`
+  String get PaperProducts {
+    return Intl.message(
+      'Paper Products',
+      name: 'PaperProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dishwashing Detergents`
+  String get DishwashingDetergents {
+    return Intl.message(
+      'Dishwashing Detergents',
+      name: 'DishwashingDetergents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cups`
+  String get Cups {
+    return Intl.message(
+      'Cups',
+      name: 'Cups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bags`
+  String get Bags {
+    return Intl.message(
+      'Bags',
+      name: 'Bags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foil Bags`
+  String get FoilBags {
+    return Intl.message(
+      'Foil Bags',
+      name: 'FoilBags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `West Richards Shower Shampoo`
+  String get WestRichardsShowerShampoo {
+    return Intl.message(
+      'West Richards Shower Shampoo',
+      name: 'WestRichardsShowerShampoo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sanitary napkins`
+  String get sanitarynapkins {
+    return Intl.message(
+      'sanitary napkins',
+      name: 'sanitarynapkins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
       desc: '',
       args: [],
     );

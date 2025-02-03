@@ -15,7 +15,7 @@
     "email":"Email",
     "password":"Enter your password",
     "login":"Log in",
-    "signUp":"sign Up",
+    "signUp":"Sign up",
     "DontHaveAnAccount":"Don't have an account?",
     "WelcomeBack":"Welcome Back !",
     "contactUs":"Contact Us",
@@ -31,7 +31,21 @@
     "addProduct":"Add Product",
     "Submit":"Submit",
     "ProductDetails":"Product Details",
-    "price":"price"
+    "price":"price",
+    "PaperProducts":"Paper Products",
+    "DishwashingDetergents":"Dishwashing Detergents",
+    "Cups":"Cups",
+    "Bags":"Bags",
+    "FoilBags":"Foil Bags",
+    "WestRichardsShowerShampoo":"West Richards Shower Shampoo",
+    "sanitarynapkins":"sanitary napkins",
+    "general":"General"
+
+
+
+
+
+
 
 
 

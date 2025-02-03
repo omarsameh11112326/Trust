@@ -40,24 +40,28 @@ class _MyAppState extends State<MyApp> {
     _checkLoginState(); 
   }
 
-  Future<void> _checkLoginState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-    bool isAdmin = prefs.getBool('isAdmin') ?? false;  // Check if the user is admin
-    
-    setState(() {
-            _isAdmin = isAdmin;  // Update the admin status
+  void _changeLanguage(Locale locale) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('selectedLocale', locale.languageCode); // Save the locale
 
-      _isLoggedIn = isLoggedIn;
-      _isInitialized = true;  
-    });
-  }
+  setState(() {
+    _locale = locale;
+  });
+}
 
-  void _changeLanguage(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
+Future<void> _checkLoginState() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  bool isAdmin = prefs.getBool('isAdmin') ?? false;
+  String? localeCode = prefs.getString('selectedLocale'); 
+  setState(() {
+    _isAdmin = isAdmin;
+    _isLoggedIn = isLoggedIn;
+    _locale = localeCode != null ? Locale(localeCode) : const Locale('en');
+    _isInitialized = true;
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: _isLoggedIn 
           ? (_isAdmin ? const AdminHold() : const Home())  
-          : Welcome(onLanguageChange: _changeLanguage),
+          : WelcomeScreen(onLanguageChange: _changeLanguage),
     );
   }
 }

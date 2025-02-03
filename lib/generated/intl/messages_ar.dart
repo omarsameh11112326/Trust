@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Bags": MessageLookupByLibrary.simpleMessage("اكياس"),
+        "Cups": MessageLookupByLibrary.simpleMessage("اكواب"),
+        "DishwashingDetergents":
+            MessageLookupByLibrary.simpleMessage("منظفات غسيل الاطباق"),
         "DontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "EnterYourEmail":
@@ -33,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "EnterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "MyProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
+        "PaperProducts": MessageLookupByLibrary.simpleMessage("منتجات ورقية"),
         "ProductDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
         "WelcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك!"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
@@ -44,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "favourite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+        "general": MessageLookupByLibrary.simpleMessage("عام"),
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "lastName": MessageLookupByLibrary.simpleMessage("الاسم الأخير"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),

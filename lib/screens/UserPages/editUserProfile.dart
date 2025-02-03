@@ -54,11 +54,11 @@ TextEditingController phoneController=TextEditingController();
             title: Text(
               S.of(context).MyProfile,
               style: const TextStyle(
-                color: Colors.teal,
+                color:  Color(0xFF2F019E),
               ),
             ),
             iconTheme: const IconThemeData(
-              color: Colors.teal,
+              color:  Color(0xFF2F019E),
             ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -85,7 +85,7 @@ TextEditingController phoneController=TextEditingController();
                   TextFormField(
                     controller: firstController,
                     decoration: InputDecoration(labelText: S.of(context).firstName, labelStyle:  const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),),                 
@@ -96,7 +96,7 @@ TextEditingController phoneController=TextEditingController();
                   TextFormField(
                     controller: lastController,
                     decoration: InputDecoration(labelText: S.of(context).lastName, labelStyle: const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),),
@@ -107,7 +107,7 @@ TextEditingController phoneController=TextEditingController();
                   TextFormField(
                     controller: phoneController,
                     decoration: InputDecoration(labelText: S.of(context).phone, labelStyle:  const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),),
@@ -121,7 +121,7 @@ TextEditingController phoneController=TextEditingController();
                           value:"Normal user",
                           child: Text(S.of(context).normalUser,
                          style:   const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 16,
                     fontWeight: FontWeight.bold
                   ),),
@@ -130,7 +130,7 @@ TextEditingController phoneController=TextEditingController();
                           value: "Merchant",
                           child: Text(S.of(context).merchant,
                           style:   const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 16,
                     fontWeight: FontWeight.bold
                   ),),

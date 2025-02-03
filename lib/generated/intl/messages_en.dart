@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Bags": MessageLookupByLibrary.simpleMessage("Bags"),
+        "Cups": MessageLookupByLibrary.simpleMessage("Cups"),
+        "DishwashingDetergents":
+            MessageLookupByLibrary.simpleMessage("Dishwashing Detergents"),
         "DontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "EnterYourEmail":
@@ -32,11 +36,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your last name"),
         "EnterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
+        "FoilBags": MessageLookupByLibrary.simpleMessage("Foil Bags"),
         "MyProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "PaperProducts": MessageLookupByLibrary.simpleMessage("Paper Products"),
         "ProductDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
         "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "WelcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back !"),
+        "WestRichardsShowerShampoo": MessageLookupByLibrary.simpleMessage(
+            "West Richards Shower Shampoo"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "addProduct": MessageLookupByLibrary.simpleMessage("Add Product"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -47,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "favourite": MessageLookupByLibrary.simpleMessage("Favourite"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "general": MessageLookupByLibrary.simpleMessage("General"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "lastName": MessageLookupByLibrary.simpleMessage("last Name"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
@@ -58,8 +67,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("Phone number"),
         "policy": MessageLookupByLibrary.simpleMessage("Policy"),
         "price": MessageLookupByLibrary.simpleMessage("price"),
+        "sanitarynapkins":
+            MessageLookupByLibrary.simpleMessage("sanitary napkins"),
         "signOut": MessageLookupByLibrary.simpleMessage("Log Out"),
-        "signUp": MessageLookupByLibrary.simpleMessage("sign Up"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "upDate": MessageLookupByLibrary.simpleMessage("Update"),
         "userType": MessageLookupByLibrary.simpleMessage("User Type")
       };

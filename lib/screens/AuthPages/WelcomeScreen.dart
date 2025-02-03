@@ -1,23 +1,25 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:yousef_nour/components/button.dart';
 import 'package:yousef_nour/generated/l10n.dart';
 import 'package:yousef_nour/screens/AuthPages/login.dart';
 import 'package:yousef_nour/screens/AuthPages/signUp.dart';
 
-class Welcome extends StatefulWidget {
+class WelcomeScreen extends StatefulWidget {
   final Function(Locale locale) onLanguageChange;
 
-  const Welcome({super.key, required this.onLanguageChange});
+  const WelcomeScreen({super.key, required this.onLanguageChange});
 
   @override
-  _WelcomeState createState() => _WelcomeState();
+  _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMixin {
   bool isEnglish = true;
+ 
+  @override
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,14 @@ class _WelcomeState extends State<Welcome> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Row(
+          const Spacer(flex: 2,),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('العربية'),
               Switch(
-                activeColor: Colors.teal,
+                activeColor: const Color(0xFF2F019E),
                 inactiveTrackColor: Colors.white,
-
                 value: isEnglish,
                 onChanged: (value) {
                   setState(() {
@@ -49,21 +51,28 @@ class _WelcomeState extends State<Welcome> {
               const Text('English'),
             ],
           ),
-          const SizedBox(height: 100,),
-          Center(
-            child: Lottie.network(
-              "https://lottie.host/3470a0ed-b54f-4fcd-923a-6985aabcb4e2/Nqh7DuTFcQ.json",
-            ),
-          ),
+          
+
+           Center(
+
+            child: Image.asset('assets/TRUST LOGO PNBG.png'),
+            
+            
+             ), 
+                     const Spacer(
+                      flex: 1,
+                     ),
+
           Text(
             S.of(context).WelcomeBack,
             style: const TextStyle(
-              color: Colors.teal,
+              color: Color(0xFF2F019E),
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 10),
+
           CustomButton(
             ButtonText: S.of(context).login,
             OnPressed: () {
@@ -76,7 +85,7 @@ class _WelcomeState extends State<Welcome> {
               );
             },
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 5),
           CustomButton(
             ButtonText: S.of(context).signUp,
             OnPressed: () {
@@ -89,8 +98,9 @@ class _WelcomeState extends State<Welcome> {
               );
             },
           ),
-          const SizedBox(height: 20),
-         
+const Spacer(
+                      flex: 2,
+                     ),
         ],
       ),
     );

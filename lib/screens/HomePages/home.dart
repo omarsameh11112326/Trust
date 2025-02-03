@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, avoid_print, deprecated_member_use
+// ignore_for_file: use_build_context_synchronously, avoid_print, deprecated_member_use, unused_local_variable
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +14,7 @@ import 'package:yousef_nour/screens/HomePages/base.dart';
 import 'package:yousef_nour/screens/HomePages/favPage.dart';
 import 'package:yousef_nour/screens/HomePages/myRequestsPage.dart';
 import 'package:yousef_nour/screens/HomePages/offersPage.dart';
+import 'package:yousef_nour/screens/UserPages/MyOrders.dart';
 import 'package:yousef_nour/screens/UserPages/userProfile.dart';
 
 class Home extends StatefulWidget {
@@ -33,6 +34,7 @@ class _HomeState extends State<Home> {
   ];
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  DateTime? lastPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +46,32 @@ class _HomeState extends State<Home> {
 
     return WillPopScope(
       onWillPop: () async {
-        // Close the app when back button is pressed
-        SystemNavigator.pop();
-        return false; // Prevent navigating back to the previous screen
-      },
+      if (index != 3) { // Check if the current screen is not the base screen
+        setState(() {
+          index = 3; // Set index to 3 to navigate to the base screen
+        });
+        return false; // Prevent navigating back further
+      } else {
+        final now = DateTime.now();
+        const exitDuration = Duration(seconds: 2);
+
+        if (lastPressed == null || now.difference(lastPressed!) > exitDuration) {
+          // If the back button was not pressed within the last 2 seconds, show a hint
+          lastPressed = now;
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Press back again to exit'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+          return false; // Prevent the app from closing
+        } else {
+          // If the back button was pressed within 2 seconds, exit the app
+          SystemNavigator.pop();
+          return true; // Allow the app to close
+        }
+      }
+    },
       child: FutureBuilder<DocumentSnapshot>(
         future: users.doc(currentUser.uid).get(),
         builder: (context, snapshot) {
@@ -77,7 +101,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         height: 250,
-                        color: Colors.teal,
+                        color: const Color(0xFF2F019E),
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +142,7 @@ class _HomeState extends State<Home> {
                             drawerItem1(
                               icon: const Icon(
                                 Icons.home,
-                                color: Colors.teal,
+                                color: Color(0xFF2F019E),
                                 size: 30,
                               ),
                               label: S.of(context).home,
@@ -130,7 +154,7 @@ class _HomeState extends State<Home> {
                             drawerItem1(
                               icon: const Icon(
                                 Icons.phone,
-                                color: Colors.teal,
+                                color: Color(0xFF2F019E),
                                 size: 30,
                               ),
                               label: S.of(context).contactUs,
@@ -142,7 +166,7 @@ class _HomeState extends State<Home> {
                             drawerItem1(
                               icon: const Icon(
                                 Icons.person,
-                                color: Colors.teal,
+                                color: Color(0xFF2F019E),
                                 size: 30,
                               ),
                               label: S.of(context).MyProfile,
@@ -159,8 +183,26 @@ class _HomeState extends State<Home> {
                             const SizedBox(height: 10),
                             drawerItem1(
                               icon: const Icon(
+                                Icons.add_shopping_cart_rounded,
+                                color: Color(0xFF2F019E),
+                                size: 30,
+                              ),
+                              label: "My Orders",
+                              OnTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return const OrdersPage();
+                                  },
+                                ));
+                              },
+                            ),
+                            const SizedBox(height: 10),
+                            const Divider(indent: 10, endIndent: 10, thickness: 2),
+                            const SizedBox(height: 10),
+                            drawerItem1(
+                              icon: const Icon(
                                 Icons.menu_book,
-                                color: Colors.teal,
+                                color: Color(0xFF2F019E),
                                 size: 30,
                               ),
                               label: S.of(context).aboutUs,
@@ -172,7 +214,7 @@ class _HomeState extends State<Home> {
                             drawerItem1(
                               icon: const Icon(
                                 Icons.logout,
-                                color: Colors.teal,
+                                color:  Color(0xFF2F019E),
                                 size: 30,
                               ),
                               label: S.of(context).signOut,
@@ -194,7 +236,7 @@ class _HomeState extends State<Home> {
                                 deleteCurrentUser();
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) {
-                                    return Welcome(onLanguageChange: (Locale locale) {});
+                                    return WelcomeScreen(onLanguageChange: (Locale locale) {});
                                   },
                                 ));
                               },
@@ -221,7 +263,7 @@ class _HomeState extends State<Home> {
                       child: Center(
                         child: IconButton(
                           iconSize: 30,
-                          icon: const Icon(Icons.search, color: Colors.teal),
+                          icon: const Icon(Icons.search, color: Color(0xFF2F019E)),
                           onPressed: () {
                             insertSubstringsToSearchKeywords();
                             Navigator.of(context).push(MaterialPageRoute(
@@ -235,13 +277,13 @@ class _HomeState extends State<Home> {
                 ),
               ],
               title: const Text(
-                "Nour",
+                "Trust",
                 style: TextStyle(
-                  color: Colors.teal,
+                  color:  Color(0xFF2F019E),
                 ),
               ),
               iconTheme: const IconThemeData(
-                color: Colors.teal,
+                color:  Color(0xFF2F019E),
               ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -251,54 +293,117 @@ class _HomeState extends State<Home> {
               ),
             ),
             body: navList[index],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: index,
-              onTap: (value) {
-                setState(() {
-                  index = value;
-                });
-              },
-              selectedItemColor: Colors.teal,
-              unselectedItemColor: Colors.grey,
-              items: [
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.local_offer),
-                  label: S.of(context).offers,
-                  backgroundColor: Colors.white,
+            bottomNavigationBar: StreamBuilder<QuerySnapshot>(
+  stream: FirebaseFirestore.instance
+      .collection('Cart')
+      .where('userId', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+      .snapshots(),
+  builder: (context, snapshot) {
+    int cartItemCount = 0;
+
+    // Check if the snapshot has data and calculate the cart item count
+    if (snapshot.hasData && snapshot.data != null) {
+      cartItemCount = snapshot.data!.docs.length;
+    }
+
+    return BottomNavigationBar(
+      currentIndex: index,
+      onTap: (value) {
+        setState(() {
+          index = value;
+        });
+      },
+      selectedItemColor: const Color(0xFF2F019E),
+      unselectedItemColor: Colors.grey,
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.local_offer),
+          label: S.of(context).offers,
+          backgroundColor: Colors.white,
+        ),
+        BottomNavigationBarItem(
+          icon: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              const Icon(Icons.production_quantity_limits),
+              if (cartItemCount > 0) // Show badge only if items exist in the cart
+                Positioned(
+                  right: -10,
+                  top: -10,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 0, 0),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
+                    child: Text(
+                      cartItemCount.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.production_quantity_limits),
-                  label: S.of(context).myRequests,
-                  backgroundColor: Colors.white,
-                ),
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.favorite),
-                  label: S.of(context).favourite,
-                  backgroundColor: Colors.white,
-                ),
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.home),
-                  label: S.of(context).home,
-                  backgroundColor: Colors.white,
-                ),
-              ],
-            ),
+            ],
+          ),
+          label: "My Cart",
+          backgroundColor: Colors.white,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.favorite),
+          label: S.of(context).favourite,
+          backgroundColor: Colors.white,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.home),
+          label: S.of(context).home,
+          backgroundColor: Colors.white,
+        ),
+      ],
+    );
+  },
+),
+
           );
         },
       ),
     );
   }
 
-  Future<void> logOut() async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.remove('isLoggedIn');
-      SystemNavigator.pop(); // Close the app
-    } catch (e) {
-      print('Error during logout: $e');
-    }
+ Future<void> logOut() async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('isLoggedIn');
+
+    Locale currentLocale = Localizations.localeOf(context);
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WelcomeScreen(
+          onLanguageChange: (Locale newLocale) {
+            currentLocale = newLocale;
+            S.load(newLocale);
+          },
+        ),
+      ),
+      (route) => false,
+    );
+  } catch (e) {
+    print('Error during logout: $e');
   }
+}
+
+
+
 
   Future<void> deleteCurrentUser() async {
     try {

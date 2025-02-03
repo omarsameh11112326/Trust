@@ -72,7 +72,7 @@ String? dropDownValue; // Nullable String to allow null initially
                 const SizedBox(height: 250),
                 DropdownButton(
                   value: dropDownValue,
-                  style: const TextStyle(color: Colors.teal),
+                  style: const TextStyle(color:  Color(0xFF344e41)),
                   items:  [
                     DropdownMenuItem(
                       value: S.of(context).normalUser,

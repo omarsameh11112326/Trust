@@ -42,16 +42,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       },
       keyboardType: widget.textInputType,
       obscureText: widget.isPassword ? _isObscured : false,
-      cursorColor: Colors.teal,
+      cursorColor: const Color(0xFF2F019E),
       decoration: InputDecoration(
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: Colors.red),
         ),
-        focusColor: Colors.teal,
-        fillColor: Colors.teal,
+        focusColor: const Color(0xFF2F019E),
+        fillColor: const Color(0xFF2F019E),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.teal),
+          borderSide: const BorderSide(color:  Color(0xFF2F019E)),
           borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(
@@ -62,7 +62,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ? IconButton(
                 icon: Icon(
                   _isObscured ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.teal,
+                  color: const Color(0xFF2F019E),
                 ),
                 onPressed: () {
                   setState(() {
@@ -71,9 +71,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 },
               )
             : widget.icon,
-        suffixIconColor: Colors.teal,
+        suffixIconColor:  const Color(0xFF2F019E),
         label: Text(widget.label),
-        labelStyle: const TextStyle(color: Colors.teal),
+        labelStyle: const TextStyle(color:  Color(0xFF2F019E)),
       ),
     );
   }

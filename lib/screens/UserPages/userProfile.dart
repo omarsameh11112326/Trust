@@ -52,7 +52,7 @@ class UserProfile extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               S.of(context).MyProfile,
-              style: const TextStyle(color: Colors.teal),
+              style: const TextStyle(color:  Color(0xFF2F019E)),
             ),
           ),
           body: Padding(
@@ -83,7 +83,7 @@ class UserProfile extends StatelessWidget {
 
                   Text(S.of(context).firstName,
                   style: const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
@@ -99,7 +99,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   Text(S.of(context).lastName,
                   style: const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
@@ -115,7 +115,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   Text(S.of(context).email,
                   style: const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
@@ -131,7 +131,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   Text(S.of(context).phone,
                   style: const TextStyle(
-                    color: Colors.teal,
+                    color: Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
@@ -147,7 +147,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   Text(S.of(context).userType,
                   style: const TextStyle(
-                    color: Colors.teal,
+                    color:  Color(0xFF2F019E),
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),

@@ -1,0 +1,165 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class AllOrders extends StatefulWidget {
+  const AllOrders({super.key});
+
+  @override
+  State<AllOrders> createState() => _AllOrdersState();
+}
+
+class _AllOrdersState extends State<AllOrders> {
+  Future<void> updateOrderStatus(String orderId, String newStatus) async {
+    try {
+      if (newStatus == 'Cancelled') {
+        await FirebaseFirestore.instance.collection('orderDetailsSub').doc(orderId).delete();
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Order has been cancelled and deleted.'),
+        ));
+      } else {
+        await FirebaseFirestore.instance.collection('orderDetailsSub').doc(orderId).update({
+          'status': newStatus,
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Order status updated to $newStatus'),
+        ));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Failed to update order status: $e'),
+      ));
+    }
+  }
+
+  Future<String?> fetchUserPhoneNumber(String userId) async {
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+      if (userDoc.exists) {
+        return userDoc.data()?['phoneNumber'];
+      }
+    } catch (e) {
+      debugPrint('Error fetching phone number: $e');
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "My Orders",
+          style: TextStyle(color: Color(0xFF2F019E)),
+        ),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('orderDetailsSub')
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong.'));
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No orders found.'));
+          }
+
+          final orders = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: orders.length,
+            itemBuilder: (context, index) {
+              final order = orders[index];
+              final orderData = order.data() as Map<String, dynamic>;
+
+              var items = orderData['cartItems'] ?? [];
+              double totalPrice = 0.0;
+              int totalQuantity = 0;
+
+              for (var item in items) {
+                double price = item['priceProduct'] ?? 0.0;
+                int quantity = item['quantity'] ?? 0;
+                totalPrice += price * quantity;
+                totalQuantity += quantity;
+              }
+
+              DateTime orderDate = orderData['createdAt']?.toDate() ?? DateTime.now();
+              String formattedDate = DateFormat('yyyy-MM-dd – HH:mm').format(orderDate);
+
+              final userId = orderData['userId'];
+
+              return FutureBuilder<String?>(
+                future: fetchUserPhoneNumber(userId),
+                builder: (context, phoneSnapshot) {
+                  final phoneNumber = phoneSnapshot.data ?? 'Unknown';
+
+                  return Card(
+                    elevation: 5,
+                    margin: const EdgeInsets.all(10),
+                    child: ListTile(
+                      title: Text('Address: ${orderData['Address'] ?? 'N/A'}'),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Notes: ${orderData['Notes'] ?? 'N/A'}'),
+                          Text('Government: ${orderData['Government'] ?? 'N/A'}'),
+                          Text('Status: ${orderData['status'] ?? 'Pending'}'),
+                          Text('Phone: $phoneNumber'),
+                          Text('Total Price: \$${totalPrice.toStringAsFixed(2)}'),
+                          Text('Total Quantity: $totalQuantity'),
+                          Text('Order Date: $formattedDate'),
+                          const SizedBox(height: 10),
+
+                          if (items.isNotEmpty)
+                            ...items.map((item) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Product: ${item['nameProduct'] ?? 'Unknown'}'),
+                                  Text('Qty: ${item['quantity'] ?? 0}'),
+                                  Text(
+                                      'Price: \$${(item['priceProduct'] ?? 0.0) * (item['quantity'] ?? 1)}'),
+                                  const SizedBox(height: 5),
+                                ],
+                              );
+                            }).toList(),
+                          if (items.isEmpty)
+                            const Text('No items in this order'),
+
+                          // Dropdown to change the status
+                          const SizedBox(height: 10),
+                          DropdownButton<String>(
+                            value: orderData['status'] ?? 'Pending',
+                            items: const [
+                              DropdownMenuItem(value: 'Pending', child: Text('Pending')),
+                              DropdownMenuItem(value: 'Shipped', child: Text('Shipped')),
+                              DropdownMenuItem(value: 'Delivered', child: Text('Delivered')),
+                              DropdownMenuItem(value: 'Cancelled', child: Text('Cancelled')),
+                            ],
+                            onChanged: (newStatus) {
+                              if (newStatus != null) {
+                                updateOrderStatus(order.id, newStatus);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}

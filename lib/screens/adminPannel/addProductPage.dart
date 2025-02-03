@@ -27,6 +27,7 @@ class _AddProductPageState extends State<AddProductPage> {
   String? descriptionProduct;
   String? priceProduct;
   String? imageUrl;
+  String?dropDownValue="Smart Watch";
 
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -85,6 +86,7 @@ class _AddProductPageState extends State<AddProductPage> {
         "nameProduct": nameProduct,
         "priceProduct": priceProduct,
         "imageProduct": imageUrl,
+        "category": dropDownValue,
       });
 
       if (mounted) {
@@ -151,6 +153,7 @@ class _AddProductPageState extends State<AddProductPage> {
                         textInputType: TextInputType.text,
                         controller: descriptionController,
                       ),
+                        
                       const SizedBox(height: 16),
                       CustomTextFormField(
                         label: "Product Price",
@@ -163,6 +166,49 @@ class _AddProductPageState extends State<AddProductPage> {
                         textInputType: TextInputType.number,
                         controller: priceController,
                       ),
+                      const SizedBox(height: 16),
+
+                      DropdownButton(
+                        alignment: Alignment.center,
+                  value: dropDownValue,
+                  style: const TextStyle(color: Color(0xFF2F019E)),
+                  items:  [
+                     const DropdownMenuItem(
+                      value: "Smart Watch",
+                      child: Text("Smart Watch"),
+                    ),
+                    const DropdownMenuItem(
+                      value: "Air Pods",
+                      child: Text("Air Pods"),
+                    ),
+                    DropdownMenuItem(
+                      value: S.of(context).DishwashingDetergents,
+                      child: Text(S.of(context).DishwashingDetergents),
+                    ),
+                    DropdownMenuItem(
+                      value: S.of(context).Cups,
+                      child: Text(S.of(context).Cups),
+                    ),
+                    DropdownMenuItem(
+                      value: S.of(context).Bags,
+                      child: Text(S.of(context).Bags),
+                    ),
+                    DropdownMenuItem(
+                      value: S.of(context).FoilBags,
+                      child: Text(S.of(context).FoilBags),
+                    ),
+                    DropdownMenuItem(
+                      value: S.of(context).WestRichardsShowerShampoo,
+                      child: Text(S.of(context).WestRichardsShowerShampoo),
+                    ),
+                   
+                    DropdownMenuItem(
+                      value: S.of(context).sanitarynapkins,
+                      child: Text(S.of(context).sanitarynapkins),
+                    ),
+                  ],
+                  onChanged: dropCallBack,
+                ),
                       const SizedBox(height: 16),
                       _imageFile == null
                           ? const Text("No image selected")
@@ -204,5 +250,12 @@ class _AddProductPageState extends State<AddProductPage> {
               ),
             ),
           );
+  }
+  void dropCallBack(String? selectedValue) {
+    if (selectedValue is String) {
+      setState(() {
+        dropDownValue = selectedValue;
+      });
+    }
   }
 }

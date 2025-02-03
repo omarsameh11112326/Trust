@@ -46,11 +46,24 @@ dependencies:
   carousel_slider: ^5.0.0
   image_card: ^0.0.4
   shared_preferences: ^2.2.3
-  intl: ^0.18.1
+  intl: ^0.19.0
+  path: ^1.9.0
+  flutter_svg: ^2.0.16
+  animated_text_kit: ^4.2.2
+  flutter_launcher_icons: ^0.13.1
+  firebase_messaging: ^15.2.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/TRUST LOGO PNBG.png"
+  adaptive_icon_background: "assets/TRUST LOGO PNBG.png"
+  adaptive_icon_foreground: "assets/TRUST LOGO PNBG.png" 
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
